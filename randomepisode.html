@@ -7,8 +7,10 @@
 		/*
 		This file randomly redirects a user to one of the URLs in a list. It is built
 		with the intent of randomization in a controlled experiment.
+
 		For example, create three Google Docs forms (or equivalent) and add their URLs
 		to the list below. That's it!
+
 		The user is then automatically and randomly assigned to one of the URLs when
 		the user visits this file. If the user decides to close and reopen the browser,
 		the user is still redirected to the same URL since a cookie is saved in the
@@ -19,7 +21,7 @@
 		peterdahlgren.com
 		2016-01-05
 		*/
-
+		
 		// List of URLs (two or more) for the experimental treatment and control groups.
 		var RedirectURLs = {
 			"urls" : [
@@ -344,7 +346,7 @@
 				{ "url" : "https://www.freesouthpark.ml/watch/paramount-specials/the-streaming-wars-part-2" },
 				{ "url" : "https://www.freesouthpark.ml/watch/season-26/cupid-ye" },
 				{ "url" : "https://www.freesouthpark.ml/bigger-longer-and-uncut" }
-
+				
 			]
 		}
 
@@ -364,19 +366,11 @@
 			document.location = gotoUrl;
 		}
 
-		// Perform randomization and save it to a cookie.
-		function GetRandomNumber(Groups) {
-			// Has cookie been set?
-			var rndIndex = null;
-			if (GetCookie() != "") {
-				// Yes, get randomization from cookie.
-				rndIndex = GetCookie()
-			} else {
-				// No, set random value to cookie.
-				rndIndex = Math.floor((Math.random() * Groups));
-				SetCookie(rndIndex, 30) // Set cookie for 30 days.
-			}
-			return rndIndex
+		// Set cookie with randomization value.
+		function SetCookie(CookieValue, DaysUntilExpire) {
+			var d = new Date();
+			d.setTime(d.getTime() + (DaysUntilExpire * 24 * 60 * 60 * 1000));
+			document.cookie = "rnd=" + CookieValue + ";expires=" + d.toUTCString();
 		}
 
 		// Get cookie with randomization value. Return empty string if not set.
