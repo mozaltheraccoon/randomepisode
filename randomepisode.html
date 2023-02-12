@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Redirecting...</title>
+	<script type="text/javascript">
+		/*
+		This file randomly redirects a user to one of the URLs in a list. It is built
+		with the intent of randomization in a controlled experiment.
+
+		For example, create three Google Docs forms (or equivalent) and add their URLs
+		to the list below. That's it!
+
+		The user is then automatically and randomly assigned to one of the URLs when
+		the user visits this file. If the user decides to close and reopen the browser,
+		the user is still redirected to the same URL since a cookie is saved in the
+		user's browser.
+		
+		Peter M. Dahlgren
+		@peterdalle
+		peterdahlgren.com
+		2016-01-05
+		*/
+		
+		// List of URLs (two or more) for the experimental treatment and control groups.
+		var RedirectURLs = {
+			"urls" : [
+				{ "url" : "https://www.freesouthpark.ml/watch/season-1/cartman-gets-an-anal-probe" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-1/weight-gain-4000" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-1/volcano" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-1/big-gay-als-big-gay-boat-ride" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-1/an-elephant-makes-love-to-a-pig" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-1/death" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-1/pinkeye" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-1/starvin-marvin" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-1/mr-hankey-the-christmas-poo" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-1/damien" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-1/toms-rhinoplasty" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-1/mecha-streisand" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-1/cartmans-mom-is-a-dirty-slut" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-2/terrance-and-phillip-in-not-without-my-anus" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-2/cartmans-mom-is-still-a-dirty-slut" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-2/chickenlover" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-2/ikes-wee-wee" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-2/conjoined-fetus-lady" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-2/the-mexican-staring-frog-of-southern-sri-lanka" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-2/city-on-the-edge-of-forever" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-2/summer-sucks" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-2/chefs-chocolate-salty-balls" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-2/chickenpox" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-2/roger-ebert-should-lay-off-the-fatty-foods" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-2/clubhouses" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-2/cow-days" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-2/chef-aid" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-2/spookyfish" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-2/merry-christmas-charlie-manson" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-2/gnomes" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-2/prehistoric-ice-man" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-3/rainforest-shmainforest" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-3/spontaneous-combustion" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-3/succubus" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-3/jakovasaurs" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-3/tweek-vs-craig" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-3/sexual-harassment-panda" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-3/cat-orgy" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-3/two-guys-naked-in-a-hot-tub" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-3/jewbilee" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-3/korns-groovy-pirate-ghost-mystery" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-3/chinpokomon" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-3/hooked-on-monkey-fonics" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-3/starvin-marvin-in-space" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-3/the-red-badge-of-gayness" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-3/mr-hankeys-christmas-classics" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-3/are-you-there-god-its-me-jesus" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-3/world-wide-recorder-concert" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-4/tooth-fairys-tats-2000" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-4/cartmans-silly-hate-crime-2000" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-4/timmy-2000" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-4/quintuplets" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-4/pip" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-4/cartman-joins-nambla" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-4/cherokee-hair-tampons" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-4/chef-goes-nanners" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-4/something-you-can-do-with-your-finger" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-4/do-the-handicapped-go-to-hell" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-4/probably" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-4/4th-grade" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-4/trapper-keeper" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-4/helen-keller-the-musical" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-4/fat-camp" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-4/the-wacky-molestation-adventure" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-4/a-very-crappy-christmas" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-5/it-hits-the-fan" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-5/cripple-fight" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-5/super-best-friends" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-5/scott-tenorman-must-die" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-5/terrance-and-phillip-behind-the-blow" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-5/cartmanland" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-5/proper-condom-use" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-5/towelie" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-5/osama-bin-laden-has-farty-pants" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-5/how-to-eat-with-your-butt" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-5/the-entity" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-5/here-comes-the-neighborhood" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-5/kenny-dies" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-5/butters-very-own-episode" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-6/jared-has-aides" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-6/asspen" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-6/freak-strike" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-6/fun-with-veal" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-6/the-new-terrance-and-phillip-movie-trailer" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-6/professor-chaos" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-6/simpsons-already-did-it" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-6/red-hot-catholic-love" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-6/free-hat" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-6/bebes-boobs-destroy-society" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-6/child-abduction-is-not-funny" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-6/a-ladder-to-heaven" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-6/the-return-of-the-fellowship-of-the-ring-to-the-two-towers" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-6/the-death-camp-of-tolerance" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-6/the-biggest-douche-in-the-universe" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-6/my-future-self-n-me" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-6/red-sleigh-down" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-7/cancelled" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-7/krazy-kripples" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-7/toilet-paper" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-7/im-a-little-bit-country" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-7/fat-butt-and-pancake-head" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-7/lil-crime-stoppers" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-7/red-mans-greed" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-7/south-park-is-gay" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-7/christian-rock-hard" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-7/grey-dawn" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-7/casa-bonita" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-7/all-about-mormons" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-7/butt-out" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-7/raisins" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-7/its-christmas-in-canada" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-8/good-times-with-weapons" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-8/up-the-down-steroid" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-8/the-passion-of-the-jew" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-8/you-got-fd-in-the-a" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-8/awesom-o" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-8/the-jeffersons" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-8/goobacks" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-8/douche-and-turd" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-8/something-wall-mart-this-way-comes" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-8/preschool" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-8/quest-for-ratings" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-8/stupid-spoiled-whore-video-playset" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-8/cartmans-incredible-gift" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-8/woodland-critter-christmas" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-9/mr-garrisons-fancy-new-vagina" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-9/die-hippie-die" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-9/wing" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-9/best-friends-forever" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-9/the-losing-edge" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-9/the-death-of-eric-cartman" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-9/erection-day" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-9/two-days-before-the-day-after-tomorrow" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-9/marjorine" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-9/follow-that-egg" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-9/ginger-kids" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-9/trapped-in-the-closet" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-9/free-willzyx" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-9/bloody-mary" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-10/the-return-of-chef" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-10/smug-alert" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-10/cartoon-wars-part-i" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-10/cartoon-wars-part-ii" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-10/a-million-little-fibers" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-10/manbearpig" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-10/tsst" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-10/make-love-not-warcraft" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-10/mystery-of-the-urinal-deuce" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-10/miss-teacher-bangs-a-boy" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-10/hell-on-earth-2006" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-10/go-god-go" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-10/go-god-go-xii" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-10/stanleys-cup" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-11/with-apologies-to-jesse-jackson" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-11/cartman-sucks" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-11/lice-capades" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-11/the-snuke" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-11/fantastic-easter-special" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-11/d-yikes" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-11/night-of-the-living-homeless" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-11/le-petit-tourette" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-11/more-crap" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-11/imaginationland" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-11/imaginationland-episode-ii" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-11/imaginationland-episode-iii" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-11/guitar-queer-o" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-11/the-list" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-12/tonsil-trouble" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-12/britneys-new-look" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-12/major-boobage" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-12/canada-on-strike" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-12/eek-a-penis" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-12/over-logging" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-12/super-fun-time" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-12/the-china-problem" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-12/breast-cancer-show-ever" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-12/pandemic" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-12/pandemic-2-the-startling" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-12/about-last-night" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-12/elementary-school-musical" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-12/the-ungroundable" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-13/the-ring" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-13/the-coon" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-13/margaritaville" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-13/eat-pray-queef" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-13/fishsticks" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-13/pinewood-derby" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-13/fatbeard" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-13/dead-celebrities" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-13/butters-bottom-bitch" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-13/w-t-f" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-13/whale-whores" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-13/the-f-word" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-13/dances-with-smurfs" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-13/pee" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-14/sexual-healing" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-14/the-tale-of-scrotie-mcboogerballs" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-14/medicinal-fried-chicken" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-14/you-have-0-friends" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-14/200" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-14/201" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-14/crippled-summer" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-14/poor-and-stupid" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-14/its-a-jersey-thing" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-14/insheeption" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-14/coon-2-hindsight" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-14/mysterion-rises" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-14/coon-vs-coon-friends" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-14/crème-fraiche" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-15/humancentipad" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-15/funnybot" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-15/royal-pudding" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-15/t-m-i" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-15/crack-baby-athletic-association" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-15/city-sushi" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-15/youre-getting-old" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-15/ass-burgers" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-15/the-last-of-the-meheecans" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-15/bass-to-mouth" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-15/broadway-bro-down" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-15/1" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-15/a-history-channel-thanksgiving" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-15/the-poor-kid" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-16/reverse-cowgirl" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-16/cash-for-gold" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-16/faith-hilling" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-16/jewpacabra" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-16/butterballs" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-16/i-should-have-never-gone-ziplining" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-16/cartman-finds-love" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-16/sarcastaball" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-16/raising-the-bar" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-16/insecurity" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-16/going-native" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-16/a-nightmare-on-facetime" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-16/a-scause-for-applause" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-16/obama-wins" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-17/let-go-let-gov" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-17/informative-murder-porn" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-17/world-war-zimmerman" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-17/goth-kids-3-dawn-of-the-posers" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-17/taming-strange" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-17/ginger-cow" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-17/black-friday" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-17/a-song-of-ass-and-fire" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-17/titties-and-dragons" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-17/the-hobbit" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-18/go-fund-yourself" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-18/gluten-free-ebola" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-18/the-cissy" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-18/handicar" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-18/the-magic-bush" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-18/freemium-isnt-free" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-18/grounded-vindaloop" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-18/cock-magic" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-18/rehash" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-18/happyholograms" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-19/stunning-and-brave" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-19/where-my-country-gone" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-19/the-city-part-of-town" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-19/youre-not-yelping" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-19/safe-space" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-19/tweek-x-craig" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-19/naughty-ninjas" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-19/sponsored-content" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-19/truth-and-advertising" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-19/pc-principal-final-justice" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-20/member-berries" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-20/skank-hunt" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-20/the-damned" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-20/wieners-out" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-20/douche-and-a-danish" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-20/fort-collins" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-20/oh-jeez" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-20/members-only" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-20/not-funny" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-20/the-end-of-serialization-as-we-know-it" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-21/white-people-renovating-houses" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-21/put-it-down" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-21/holiday-special" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-21/franchise-prequel" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-21/hummels-heroin" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-21/sons-a-witches" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-21/doubling-down" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-21/moss-piglets" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-21/super-hard-pcness" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-21/splatty-tomato" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-22/dead-kids" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-22/a-boy-and-a-priest" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-22/the-problem-with-a-poo" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-22/tegridy-farms" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-22/the-scoots" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-22/time-to-get-cereal" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-22/nobody-got-cereal" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-22/buddha-box" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-22/unfulfilled" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-22/bike-parade" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-23/mexican-joker" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-23/band-in-china" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-23/shots" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-23/let-them-eat-goo" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-23/tegridy-farms-halloween-special" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-23/season-finale" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-23/board-girls" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-23/turd-burglars" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-23/basic-cable" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-23/christmas-snow" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-24/pandemic-special" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-24/vaccination-special" },
+				{ "url" : "https://www.freesouthpark.ml/watch/paramount-specials/post-covid" },
+				{ "url" : "https://www.freesouthpark.ml/watch/paramount-specials/post-covid-the-return-of-covid" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-25/pajama-day" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-25/the-big-fix" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-25/city-people" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-25/back-to-the-cold-war" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-25/help-my-teenager-hates-me" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-25/credigree-weed-st-patricks-day-special" },
+				{ "url" : "https://www.freesouthpark.ml/watch/paramount-specials/the-streaming-wars" },
+				{ "url" : "https://www.freesouthpark.ml/watch/paramount-specials/the-streaming-wars-part-2" },
+				{ "url" : "https://www.freesouthpark.ml/watch/season-26/cupid-ye" },
+				{ "url" : "https://www.freesouthpark.ml/bigger-longer-and-uncut" }
+				
+			]
+		}
+
+		// Count the number of URLs in list.
+		var Groups = RedirectURLs.urls.length;
+
+		// Randomize number and get the corresponding index for the URL in list.
+		var gotoUrl = RedirectURLs.urls[GetRandomNumber(Groups)].url
+
+		// Perform redirection.
+		if (window.location.search == "?debug") {
+			// Debug mode: If user supplies a ?debug querystring,
+			// then only show the redirect URL, but don't actually redirect.
+			document.write("Redirect URL: " + gotoUrl);
+		} else {
+			// Redirect the user to the new URL.
+			document.location = gotoUrl;
+		}
+
+		// Perform randomization and save it to a cookie.
+		function GetRandomNumber(Groups) {
+			// Has cookie been set?
+			var rndIndex = null;
+			if (GetCookie() != "") {
+				// Yes, get randomization from cookie.
+				rndIndex = GetCookie()
+			} else {
+				// No, set random value to cookie.
+				rndIndex = Math.floor((Math.random() * Groups));
+				SetCookie(rndIndex, 30) // Set cookie for 30 days.
+			}
+			return rndIndex
+		}
+
+		// Set cookie with randomization value.
+		function SetCookie(CookieValue, DaysUntilExpire) {
+			var d = new Date();
+			d.setTime(d.getTime() + (DaysUntilExpire * 24 * 60 * 60 * 1000));
+			document.cookie = "rnd=" + CookieValue + ";expires=" + d.toUTCString();
+		}
+
+		// Get cookie with randomization value. Return empty string if not set.
+		function GetCookie() {
+			var ca = document.cookie.split(';');
+			for(var i = 0; i < ca.length; i++) {
+				var c = ca[i];
+				while (c.charAt(0) == ' ') c = c.substring(1);
+				if (c.indexOf("rnd=") == 0) return c.substring(4, c.length);
+			}
+			return "";
+		}
+	</script>
+</head>
+<body>
+</body>
+</html>
