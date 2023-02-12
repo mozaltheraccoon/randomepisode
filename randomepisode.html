@@ -376,6 +376,7 @@
 			} else {
 				// No, set random value to cookie.
 				rndIndex = Math.floor((Math.random() * Groups));
+				SetCookie(rndIndex, 30) // Set cookie for 30 days.
 			}
 			return rndIndex
 		}
