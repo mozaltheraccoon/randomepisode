@@ -384,7 +384,6 @@
 		// Set cookie with randomization value.
 		function SetCookie(CookieValue, DaysUntilExpire) {
 			var d = new Date();
-			document.cookie = "rnd=" + CookieValue + ";expires=" + d.toUTCString();
 		}
 
 		// Get cookie with randomization value. Return empty string if not set.
