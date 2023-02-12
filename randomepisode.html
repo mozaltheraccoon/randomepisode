@@ -365,20 +365,6 @@
 			// Redirect the user to the new URL.
 			document.location = gotoUrl;
 		}
-
-		// Perform randomization and save it to a cookie.
-		function GetRandomNumber(Groups) {
-			// Has cookie been set?
-			var rndIndex = null;
-			if (GetCookie() != "") {
-				// Yes, get randomization from cookie.
-				rndIndex = GetCookie()
-			} else {
-				// No, set random value to cookie.
-				rndIndex = Math.floor((Math.random() * Groups));
-			}
-			return rndIndex
-		}
 	</script>
 </head>
 <body>
