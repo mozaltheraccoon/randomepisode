@@ -387,17 +387,6 @@
 			d.setTime(d.getTime());
 			document.cookie = "rnd=" + CookieValue + d.toUTCString();
 		}
-
-		// Get cookie with randomization value. Return empty string if not set.
-		function GetCookie() {
-			var ca = document.cookie.split(';');
-			for(var i = 0; i < ca.length; i++) {
-				var c = ca[i];
-				while (c.charAt(0) == ' ') c = c.substring(1);
-				if (c.indexOf("rnd=") == 0) return c.substring(4, c.length);
-			}
-			return "";
-		}
 	</script>
 </head>
 <body>
