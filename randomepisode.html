@@ -1,30 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<meta charset="utf-8">
-	<title>Redirecting...</title>
-	<script type="text/javascript">
-		/*
-		This file randomly redirects a user to one of the URLs in a list. It is built
-		with the intent of randomization in a controlled experiment.
-
-		For example, create three Google Docs forms (or equivalent) and add their URLs
-		to the list below. That's it!
-
-		The user is then automatically and randomly assigned to one of the URLs when
-		the user visits this file. If the user decides to close and reopen the browser,
-		the user is still redirected to the same URL since a cookie is saved in the
-		user's browser.
-		
-		Peter M. Dahlgren
-		@peterdalle
-		peterdahlgren.com
-		2016-01-05
-		*/
-		
-		// List of URLs (two or more) for the experimental treatment and control groups.
-		var RedirectURLs = {
-			"urls" : [
+const redirectUrls = [
 				{ "url" : "https://www.freesouthpark.ml/watch/season-1/cartman-gets-an-anal-probe" },
 				{ "url" : "https://www.freesouthpark.ml/watch/season-1/weight-gain-4000" },
 				{ "url" : "https://www.freesouthpark.ml/watch/season-1/volcano" },
@@ -346,27 +320,7 @@
 				{ "url" : "https://www.freesouthpark.ml/watch/paramount-specials/the-streaming-wars-part-2" },
 				{ "url" : "https://www.freesouthpark.ml/watch/season-26/cupid-ye" },
 				{ "url" : "https://www.freesouthpark.ml/bigger-longer-and-uncut" }
+]
+
+document.location = redirectUrls[Math.floor(Math.random() * redirectUrls.length)]
 				
-			]
-		}
-
-		// Count the number of URLs in list.
-		var Groups = RedirectURLs.urls.length;
-
-		// Randomize number and get the corresponding index for the URL in list.
-		var gotoUrl = RedirectURLs.urls[GetRandomNumber(Groups)].url
-
-		// Perform redirection.
-		if (window.location.search == "?debug") {
-			// Debug mode: If user supplies a ?debug querystring,
-			// then only show the redirect URL, but don't actually redirect.
-			document.write("Redirect URL: " + gotoUrl);
-		} else {
-			// Redirect the user to the new URL.
-			document.location = gotoUrl;
-		}
-	</script>
-</head>
-<body>
-</body>
-</html>
