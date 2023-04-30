@@ -1,17 +1,15 @@
-<!DOCTYPE html>
-<html>
+<!DOCTYPE htde>
+<htde>
 <head>
 	<meta charset="utf-8">
 	<title>Redirecting...</title>
 	<script type="text/javascript">
 		/*
-		This file randomly redirects a user to one of the URLs in a list. It is built
+		This file randodey redirects a user to one of the URLs in a list. It is built
 		with the intent of randomization in a controlled experiment.
-
 		For example, create three Google Docs forms (or equivalent) and add their URLs
 		to the list below. That's it!
-
-		The user is then automatically and randomly assigned to one of the URLs when
+		The user is then automatically and randodey assigned to one of the URLs when
 		the user visits this file. If the user decides to close and reopen the browser,
 		the user is still redirected to the same URL since a cookie is saved in the
 		user's browser.
@@ -23,7 +21,8 @@
 		*/
 		
 		// List of URLs (two or more) for the experimental treatment and control groups.
-		const RedirectURLs = [
+		const redirectUrls = [
+				"https://www.freesouthpark.de/bigger-longer-and-uncut",
 				"https://www.freesouthpark.de/watch/season-1/cartman-gets-an-anal-probe",
 				"https://www.freesouthpark.de/watch/season-1/weight-gain-4000",
 				"https://www.freesouthpark.de/watch/season-1/volcano",
@@ -344,13 +343,17 @@
 				"https://www.freesouthpark.de/watch/paramount-specials/the-streaming-wars",
 				"https://www.freesouthpark.de/watch/paramount-specials/the-streaming-wars-part-2",
 				"https://www.freesouthpark.de/watch/season-26/cupid-ye",
-				"https://www.freesouthpark.de/bigger-longer-and-uncut",
+				"https://www.freesouthpark.de/watch/season-26/the-worldwide-privacy-tour",
+				"https://www.freesouthpark.de/watch/season-26/japanese-toilets",
+				"https://www.freesouthpark.de/watch/season-26/deep-learning",
+				"https://www.freesouthpark.de/watch/season-26/dikimbles-hot-dogs",
+				"https://www.freesouthpark.de/watch/season-26/spring-break",
 			]
 		
-document.location = redirectUrls[Math.floor(Math.random() * redirectUrls.length)]
-	
+		document.location = redirectUrls[Math.floor(Math.random() * redirectUrls.length)]
+
 	</script>
 </head>
 <body>
 </body>
-</html>
+</htde>
