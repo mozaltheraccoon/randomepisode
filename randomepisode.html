@@ -4,24 +4,7 @@
 	<meta charset="utf-8">
 	<title>Redirecting...</title>
 	<script type="text/javascript">
-		/*
-		This file randodey redirects a user to one of the URLs in a list. It is built
-		with the intent of randomization in a controlled experiment.
-		For example, create three Google Docs forms (or equivalent) and add their URLs
-		to the list below. That's it!
-		The user is then automatically and randodey assigned to one of the URLs when
-		the user visits this file. If the user decides to close and reopen the browser,
-		the user is still redirected to the same URL since a cookie is saved in the
-		user's browser.
-		
-		Peter M. Dahlgren
-		@peterdalle
-		peterdahlgren.com
-		2016-01-05
-		*/
-		
-		// List of URLs (two or more) for the experimental treatment and control groups.
-		const redirectUrls = [
+		const episodes = [
 				"https://www.freesouthpark.de/bigger-longer-uncut",
 				"https://www.freesouthpark.de/watch/season-1/cartman-gets-an-anal-probe",
 				"https://www.freesouthpark.de/watch/season-1/weight-gain-4000",
@@ -349,9 +332,10 @@
 				"https://www.freesouthpark.de/watch/season-26/dikimbles-hot-dogs",
 				"https://www.freesouthpark.de/watch/season-26/spring-break",
 				"https://www.freesouthpark.de/watch/paramount-specials/joining-the-panderverse",
+				"https://www.freesouthpark.de/watch/paramount-specials/not-suitable-for-children",
 			]
 		
-		document.location = redirectUrls[Math.floor(Math.random() * redirectUrls.length)]
+		document.location = episodes[Math.floor(Math.random() * episodes.length)]
 
 	</script>
 </head>
